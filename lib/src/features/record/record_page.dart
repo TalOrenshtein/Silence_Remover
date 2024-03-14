@@ -31,7 +31,6 @@ class RecordPage extends StatefulWidget{
   ///
   /// Throws if FFmpeg processing fail.
   static Future<List<Pair<double, double>>> getNoisyPairs(String path) async{
-    //FFmpegSession ffLog=await FFmpegKit.execute('-i $path -af silencedetect=noise=${dB}dB:d=0.1 -f null - ');
     List<Pair<double,double>> noiseTimeStamps=[];
     final String? output;
     try{
@@ -103,7 +102,7 @@ class RecordPage extends StatefulWidget{
   static Future<FFmpegSession> silenceRemover(String path) async{
     final noExtPath=path.substring(0,path.length-dotM4aWordLength); //removing file extention i.e .m4a.
     //return FFmpegKit.execute('-i $path -af silenceremove=stop_threshold=${dB}dB:start_threshold=${dB}dB:stop_periods=-1:stop_duration=0.1 ${noExtPath}_chained.m4a');
-    return FFmpegKit.execute('-i $path -af silenceremove=stop_threshold=${dB}dB:stop_periods=-1:stop_duration=0.7 ${noExtPath}_chained.m4a'); //TODO: this new version seems to not leaving silence there and cut pretty well.
+    return FFmpegKit.execute('-i $path -af silenceremove=stop_threshold=${dB}dB:stop_periods=-1:stop_duration=0.7 ${noExtPath}_chained.m4a'); //this new version seems to not leaving silence there and cut pretty well.
   }
 
   /// Trim/split the audio by silence parts, and delete the OG audio file.

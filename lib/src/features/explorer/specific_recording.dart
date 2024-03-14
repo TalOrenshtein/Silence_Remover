@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'dart:io' as io;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:loader_overlay/loader_overlay.dart';
-//import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:silence_remover/src/router/router.dart';
 import 'package:silence_remover/src/utils/utils.dart';
@@ -33,7 +32,6 @@ class _SpecificRecordingPageState extends State<SpecificRecordingPage> {
   bool lastProcessUnfinished=false;
   bool errorOccurred=false;
   // ignore: non_constant_identifier_names
-  //String? ogAudioRecordingPath;
   @override
   void initState(){
     errorOccurred=widget.errorOccurred; //setting the error occurred from the widget parameter in a variable so we can edit it if needed.
@@ -261,29 +259,6 @@ String? getOGaudioPath(){
 bool _isLastProcessUnfinished() {
   return getOGaudioPath()!=null;
 }
-
-/// Searches for the OG audio recording file, if it exists, it means the recording processing isn't finish as the last step of the recording processing is to delete this file.
-/// If exists, update [ogAudioRecordingPath] to its path.
-/// 
-/// Assuming the recording processing delete the OG audio file after the actual processing ended.
-/// Also, assuming that OG audio file don't have _ chars in it's m4a filename (after "audio_"), and that the proccesed audio files do,
-/// as we detect the OG audio file using the knowledge that the proccesed filenames are marked, and each mark is seperated by '_' .
-// bool _isLastProcessUnfinished_old() {
-//   // ignore: non_constant_identifier_names
-//   int? posof_char; // will be null only if there's no files in this folder, meaning that the user manually deleted all the files.
-//   for (var e in files){
-//     String filenameCut=e.path.substring(e.path.lastIndexOf("/audio_")+("/audio_").length);
-//     posof_char=filenameCut.indexOf("_"); // The position of the '_' char, which appears at all the processed audio files' names but not at the OG's.
-//     if(posof_char==-1){
-//       ogAudioRecordingPath=e.path;
-//       break;
-//     }
-//   }
-//   // setState(() {
-//   //   lastProcessUnfinished=posof_char==null?false:posof_char==-1;
-//   // });
-//   return posof_char==null?false:posof_char==-1;
-// }
 
 ///Figureing out if the last processed was cut at the middle or didn't even started, and starts processing accourdinaly.
 Future<void> _resumeLastProcess() async{

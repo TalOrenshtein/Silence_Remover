@@ -56,11 +56,6 @@ class Notes{
     });
   }
 
-  ///Query the db and get the value stored under [key] key.
-  // static Future<String?> getNote(String key) async {
-  // ///Gets a List that potentially has only 1 pair (only if [key] is an existing ID), the key is 'Note' and the value (Note in Notes table) is the requested note.
-  //   return (_db.rawQuery('SELECT Note FROM Notes WHERE ID=?',[key]).then((list) => list.isNotEmpty?list[0]['Note']:null));
-  // }
     ///Query the db and get the value stored under [key] key.
   static Future<String?> getNote(String key) async {
   ///Gets a List that potentially has only 1 pair (only if [key] is an existing ID), the key is 'Note' and the value (Note in Notes table) is the requested note.
