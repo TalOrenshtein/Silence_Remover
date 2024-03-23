@@ -4,9 +4,7 @@ import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
 import 'package:silence_remover/src/features/record/record_page.dart';
 
-/*Note: from my understading, SQLite3 uses transactions when updating the DB, so we don't need to use a mutex here;
-but I don't get if I need to use a transaction to ensure thread safety or if a single query is protected when running a SELECT query that isn't wrapped in a transaction by default.
-For now, using transactions just to be safe. I thought about using transaction only for SELECT queries but wraps the other quries with a transaction change nothing anyway.
+/*Note: Even though we don't actually using multithreading, theres not much overhead caused by this, so using transactions for future proofing and peace of mind. I thought about using transaction only for SELECT queries, but from the docs, wrapping the other quries with a transaction change nothing anyway.
 */
 
 class DB{
